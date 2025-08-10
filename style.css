@@ -1,3 +1,5 @@
+@font-face {font-family:"MyanmarSagar";src:local('MyanmarSagar'),url('https://cdn.jsdelivr.net/gh/saturngod/myanmar-unicode-fonts@master/docs/KhmerType/MyanmarSagar.ttf') format('truetype');}
+
 /* Basic styling for a clean, minimal look */
 :root {
   --bg-color-light: #f9f9f9;
@@ -12,7 +14,7 @@
 
 /* Use flexbox on the body to create a sticky footer */
 body {
-  font-family: serif;
+  font-family: MyanmarSagar;
   line-height: 1.6;
   margin: 0;
   padding: 0;
