@@ -1,0 +1,334 @@
+/* Basic styling for a clean, minimal look */
+:root {
+  --bg-color-light: #f9f9f9;
+  --text-color-light: #333;
+  --border-color-light: #ddd;
+  --bg-color-dark: #121212;
+  --text-color-dark: #e0e0e0;
+  --border-color-dark: #444;
+  --sidebar-bg-color-light: #f1f1f1;
+  --sidebar-bg-color-dark: #222;
+}
+
+/* Use flexbox on the body to create a sticky footer */
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Dark mode styling */
+body.dark-mode {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* Prevent background scrolling when sidebar is open on mobile */
+body.sidebar-open {
+  overflow: hidden;
+}
+
+/* Page layout using flexbox */
+.page-container {
+  display: flex;
+  flex: 1; /* This will make the main content container fill the available space */
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg-color-light);
+  border-right: 1px solid var(--border-color-light);
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+  overflow-y: scroll; /* Changed to 'scroll' to always show scrollbar */
+  transform: translateX(-100%); /* Hide by default on all screens */
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+}
+
+body.dark-mode .sidebar {
+  background-color: var(--sidebar-bg-color-dark);
+  border-right-color: var(--border-color-dark);
+}
+
+body.sidebar-open .sidebar {
+  transform: translateX(0); /* Show when sidebar-open class is present */
+}
+
+.search-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px 12px;
+  padding-right: 35px; /* Space for the search icon */
+  box-sizing: border-box;
+  border: 1px solid var(--border-color-light);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--text-color-light);
+  transition: border-color 0.3s;
+  margin-top: 20px;
+  /* Removed margin-top to align with icon */
+}
+
+body.dark-mode .search-container input {
+  border-color: var(--border-color-dark);
+  color: var(--text-color-dark);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.search-container svg {
+  position: absolute;
+  right: 10px;
+  top: 70%; /* Adjusted to 50% for vertical centering */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: var(--text-color-light);
+  pointer-events: none;
+}
+
+body.dark-mode .search-container svg {
+  fill: var(--text-color-dark);
+}
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 50px;
+}
+
+.sidebar-list li a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+  color: var(--text-color-light);
+  border-bottom: 1px solid var(--border-color-light);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-list li:last-child a {
+  border-bottom: none;
+}
+
+body.dark-mode .sidebar-list li a {
+  color: var(--text-color-dark);
+  border-bottom-color: var(--border-color-dark);
+}
+
+.sidebar-list li a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .sidebar-list li a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Main content and header layout */
+.main-content {
+  flex: 1; /* Take up the rest of the space */
+  padding-left: 0; /* No default offset */
+  transition: padding-left 0.3s ease-in-out;
+}
+
+/* Do not push main content out when sidebar opens */
+/* The sidebar will now overlay the content */
+/* body.sidebar-open .main-content {
+  padding-left: 250px;
+} */
+
+.site-header {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  justify-content: center; /* Horizontally center the main content (h1) */
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-color-light);
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color-light);
+  z-index: 50;
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative; /* Needed for absolute positioning of children */
+}
+
+body.dark-mode .site-header {
+  background-color: var(--bg-color-dark);
+  border-bottom-color: var(--border-color-dark);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.5em;
+  flex-grow: 1; /* Allow h1 to take available space */
+  text-align: center; /* Center the text within its flex space */
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-button svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-color-light);
+  transition: fill 0.3s;
+}
+
+body.dark-mode .toggle-button svg {
+  fill: var(--text-color-dark);
+}
+
+#menu-toggle {
+  position: absolute; /* Position absolutely */
+  left: 20px; /* Align to left top (considering header padding) */
+  top: 50%;
+  transform: translateY(-50%);
+  display: block; /* Always show the menu toggle button */
+}
+
+@media (max-width: 768px) {
+  #menu-toggle {
+    /* No change needed, it's already block */
+  }
+}
+
+#mode-toggle {
+  position: absolute; /* Position absolutely */
+  right: 20px; /* Align to right top (considering header padding) */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#sidebar-close-button {
+  /*display: none; /* Hidden on desktop */
+  position: absolute;
+  top: 5px;
+  right: 13px;
+}
+
+@media (max-width: 768px) {
+  #sidebar-close-button {
+    display: block; /* Show on mobile */
+  }
+}
+
+/* Main content container */
+.content-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 10px;
+  flex: 1; /* Ensure it takes up space in the main-content flex container */
+  padding-bottom: 40px;
+}
+
+/* Post entry styling */
+.story-entry {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.story-entry.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-entry h2 {
+  font-size: 2em;
+  border-bottom: 2px solid var(--border-color-light);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+body.dark-mode .story-entry h2 {
+  border-bottom-color: var(--border-color-dark);
+}
+
+.story-entry .story-date {
+  font-style: italic;
+  color: #888;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+body.dark-mode .story-entry .story-date {
+  color: #a0a0a0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+.navigation button {
+  background-color: #f0f0f0;
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color-light);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.navigation button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.navigation button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+body.dark-mode .navigation button {
+  background-color: #333;
+  color: var(--text-color-dark);
+  border-color: var(--border-color-dark);
+}
+
+body.dark-mode .navigation button:hover:not(:disabled) {
+  background-color: #444;
+}
+
+/* Footer styling */
+.site-footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9em;
+  color: #888;
+  border-top: 1px solid var(--border-color-light);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .site-footer {
+  color: #a0a0a0;
+  border-top: 1px solid var(--border-color-dark);
+}
+
+img {
+  width: 100%;
+}
