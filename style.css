@@ -14,7 +14,7 @@
 
 /* Use flexbox on the body to create a sticky footer */
 body {
-  font-family: MyanmarSagar;
+  font-family: serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -81,8 +81,6 @@ body.sidebar-open .sidebar {
   background-color: transparent;
   color: var(--text-color-light);
   transition: border-color 0.3s;
-  margin-top: 20px;
-  /* Removed margin-top to align with icon */
 }
 
 body.dark-mode .search-container input {
@@ -98,7 +96,7 @@ body.dark-mode .search-container input {
 .search-container svg {
   position: absolute;
   right: 10px;
-  top: 70%; /* Adjusted to 50% for vertical centering */
+  top: 50%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
@@ -113,12 +111,12 @@ body.dark-mode .search-container svg {
 .sidebar-list {
   list-style-type: none;
   padding: 0;
-  margin-bottom: 50px;
+  margin: 0;
 }
 
 .sidebar-list li a {
   display: block;
-  padding: 5px 0;
+  padding: 10px 0;
   text-decoration: none;
   color: var(--text-color-light);
   border-bottom: 1px solid var(--border-color-light);
@@ -148,12 +146,6 @@ body.dark-mode .sidebar-list li a:hover {
   padding-left: 0; /* No default offset */
   transition: padding-left 0.3s ease-in-out;
 }
-
-/* Do not push main content out when sidebar opens */
-/* The sidebar will now overlay the content */
-/* body.sidebar-open .main-content {
-  padding-left: 250px;
-} */
 
 .site-header {
   display: flex;
@@ -210,12 +202,6 @@ body.dark-mode .toggle-button svg {
   display: block; /* Always show the menu toggle button */
 }
 
-@media (max-width: 768px) {
-  #menu-toggle {
-    /* No change needed, it's already block */
-  }
-}
-
 #mode-toggle {
   position: absolute; /* Position absolutely */
   right: 20px; /* Align to right top (considering header padding) */
@@ -224,7 +210,6 @@ body.dark-mode .toggle-button svg {
 }
 
 #sidebar-close-button {
-  /*display: none; /* Hidden on desktop */
   position: absolute;
   top: 5px;
   right: 13px;
@@ -240,7 +225,7 @@ body.dark-mode .toggle-button svg {
 .content-container {
   max-width: 700px;
   margin: 20px auto;
-  padding: 0 10px;
+  padding: 0 20px;
   flex: 1; /* Ensure it takes up space in the main-content flex container */
   padding-bottom: 40px;
 }
@@ -278,6 +263,45 @@ body.dark-mode .story-entry h2 {
 
 body.dark-mode .story-entry .story-date {
   color: #a0a0a0;
+}
+
+/* Post actions styling */
+.post-actions {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.share-button {
+  background-color: #f0f0f0;
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color-light);
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.share-button:hover {
+  background-color: #e0e0e0;
+}
+
+body.dark-mode .share-button {
+  background-color: #333;
+  color: var(--text-color-dark);
+  border-color: var(--border-color-dark);
+}
+
+body.dark-mode .share-button:hover {
+  background-color: #444;
+}
+
+.share-button svg {
+  fill: currentColor;
 }
 
 .navigation {
@@ -330,6 +354,7 @@ body.dark-mode .site-footer {
   color: #a0a0a0;
   border-top: 1px solid var(--border-color-dark);
 }
+
 
 img {
   width: 100%;
