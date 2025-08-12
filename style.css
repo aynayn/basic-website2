@@ -1,3 +1,8 @@
+/*custom css*/
+img {width: 100%;}
+.story-entry h2, p, .post-actions {padding: 0 20px;}
+.search-container input {margin-top: 20px;}
+
 /* Basic styling for a clean, minimal look */
 :root {
   --bg-color-light: #f9f9f9;
@@ -94,7 +99,7 @@ body.dark-mode .search-container input {
 .search-container svg {
   position: absolute;
   right: 10px;
-  top: 50%;
+  top: 70%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
@@ -109,7 +114,7 @@ body.dark-mode .search-container svg {
 .sidebar-list {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 50px 0;
 }
 
 .sidebar-list li a {
@@ -223,7 +228,7 @@ body.dark-mode .toggle-button svg {
 .content-container {
   max-width: 700px;
   margin: 20px auto;
-  padding: 0 20px;
+  /*padding: 0 20px;*/
   flex: 1; /* Ensure it takes up space in the main-content flex container */
   padding-bottom: 40px;
 }
@@ -255,7 +260,7 @@ body.dark-mode .story-entry h2 {
 .story-entry .story-date {
   font-style: italic;
   color: #888;
-  margin-bottom: 20px;
+  margin: 10px 0;
   transition: color 0.3s;
 }
 
@@ -274,7 +279,7 @@ body.dark-mode .story-entry .story-date {
   background-color: #f0f0f0;
   color: var(--text-color-light);
   border: 1px solid var(--border-color-light);
-  padding: 8px 12px;
+  padding: 6px 8px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9em;
@@ -313,7 +318,7 @@ body.dark-mode .share-button:hover {
   background-color: #f0f0f0;
   color: var(--text-color-light);
   border: 1px solid var(--border-color-light);
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
