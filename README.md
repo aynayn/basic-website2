@@ -1,1 +1,1 @@
-https://aynayn.github.io/basic-website/
+https://aynayn.github.io/basic-website2/
