@@ -20,6 +20,12 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
             </div>
             <ul class="sidebar-list">
+
+                <li><a href="#" data-filename="home.html">HOME</a></li>
+                <li><a href="#" data-filename="blog.html">BLOG</a></li>
+                <li><a href="#" data-filename="about.html">ABOUT</a></li>
+                <li><a href="#" data-filename="contact.html">CONTACT</a></li>
+
                  <!==Keep this list up to date with your post filenames and titles==> 
                 <li><a href="#" data-filename="whispering-woods.html">The Whispering Woods</a></li>
                 <li><a href="#" data-filename="sonnet-to-the-stars.html">A Sonnet to the Stars</a></li>
@@ -47,6 +53,20 @@
                 <li><a href="#" data-filename="Oijw-dsofsd copy 19.html">LOREM 19</a></li>
                 <li><a href="#" data-filename="Oijw-dsofsd copy 20.html">LOREM 20</a></li>
                  <!==Add more posts here without editing main.js==>
+                         <ul class="parent-list">
+        <li class="toggle-parent">Item 1
+            <ul class="sub-list">
+                <li><a href="#" data-filename="myanmar-post.html">ကြင်ကြိုင်းကြောင်း</a></li>
+                <li><a href="#" data-filename="sonnet-to-the-stars.html">A Sonnet to the Stars</a></li>
+                <li>Sub-item 1.2</li>
+            </ul>
+        </li>
+        <li class="toggle-parent">Item 2
+            <ul class="sub-list">
+                <li><a href="#" data-filename="whispering-woods.html">The Whispering Woods</a></li>
+                <li><a href="#" data-filename="Oijw-dsofsd copy 20.html">LOREM 20</a></li>
+            </ul></li>
+        </ul>
             </ul>
         </nav>
 
@@ -54,6 +74,7 @@
         <div class="main-content">
             <header class="site-header">
                 <h1>My Stories & Poems</h1>
+
                 <button id="menu-toggle" class="toggle-button" aria-label="Open menu">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
                 </button>
@@ -61,7 +82,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.25A9.75 9.75 0 0 1 21.75 12c0 .4-.02.8-.07 1.19A8.25 8.25 0 1 1 12 3.76V2.25z"/></svg>
                 </button>
             </header>
-            
+
+            <ul class="navbar">
+                <a href="#" data-filename="home.html">HOME</a>
+                <a href="#whispering-woods" data-filename="blog.html">BLOG</a>
+                <a href="#about" data-filename="about.html">ABOUT</a>
+                <a href="#contact" data-filename="contact.html">CONTACT</a>
+            </ul>
+
             <main class="content-container">
                  <!==Posts will be loaded dynamically here==> 
                 <div id="post-container"></div>
@@ -75,6 +103,7 @@
     </div>
 
      <!==The footer is now a sibling to the main content container==> 
+    
     <footer class="site-footer">
         <p>&copy; 2025 by [Your Name].</p>
     </footer>

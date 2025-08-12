@@ -260,3 +260,12 @@ document.addEventListener("DOMContentLoaded", () => {
     showPost(initialIndex, false) // Don't update URL on initial load
   }
 })
+
+ document.querySelectorAll('.toggle-parent').forEach(item => {
+        item.addEventListener('click', function() {
+            const subList = this.querySelector('.sub-list');
+            if (subList) { // Check if a sub-list exists
+                subList.classList.toggle('active'); // Toggles the 'active' class
+            }
+        });
+    });
