@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebarCloseButton = document.getElementById("sidebar-close-button")
   const body = document.body
   const sidebarLinks = document.querySelectorAll(".sidebar-list a")
-  const navbarLinks = document.querySelectorAll(".navbar a")
   const prevButton = document.getElementById("prev-button")
   const nextButton = document.getElementById("next-button")
   const searchInput = document.getElementById("sidebar-search")
@@ -188,13 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function loadDarkModePreference() {
-    if (localStorage.getItem("darkMode") === "true") {
-      body.classList.add("dark-mode")
-    }
-    setModeIcon()
-  }
-
   // Event listener for opening the sidebar
   if (menuToggle) {
     menuToggle.addEventListener("click", () => body.classList.add("sidebar-open"))
@@ -209,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (modeToggle) {
     modeToggle.addEventListener("click", () => {
       body.classList.toggle("dark-mode")
-      localStorage.setItem("darkMode", body.classList.contains("dark-mode"))
       setModeIcon()
     })
   }
@@ -230,39 +221,10 @@ document.addEventListener("DOMContentLoaded", () => {
   sidebarLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault()
-      const filename = link.getAttribute("data-filename")
-
-      if (filename === "home.html" || filename === "about.html" || filename === "contact.html") {
-        window.location.href = filename
-      } else {
-        const index = postData.findIndex((post) => post.filename === filename)
-        if (index !== -1) {
-          showPost(index)
-          // Show navigation buttons for posts
-          if (prevButton) prevButton.style.display = "inline-block"
-          if (nextButton) nextButton.style.display = "inline-block"
-        }
-      }
-      body.classList.remove("sidebar-open") // Hide sidebar immediately on menu click
-    })
-  })
-
-  // Event listeners for navbar navigation links (closes sidebar on click)
-  navbarLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const contentType = link.getAttribute("data-content")
-
-      if (contentType === "blog") {
-        e.preventDefault()
-        if (postData.length > 0) {
-          showPost(0) // Load first post
-          // Show navigation buttons for posts
-          if (prevButton) prevButton.style.display = "inline-block"
-          if (nextButton) nextButton.style.display = "inline-block"
-
-          updateURL(0)
-        }
-        body.classList.remove("sidebar-open") // Hide sidebar on navbar click
+      const index = postData.findIndex((post) => post.title === link.textContent)
+      if (index !== -1) {
+        showPost(index)
+        body.classList.remove("sidebar-open") // Hide sidebar immediately on menu click
       }
     })
   })
@@ -290,32 +252,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  loadDarkModePreference()
+  setModeIcon()
 
-  // Check if we're on the main index page (no specific page requested)
-  if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
-    const initialIndex = getCurrentPostFromURL()
-    if (postData.length > 0) {
-      showPost(initialIndex, false) // Don't update URL on initial load
-      // Show navigation buttons for posts
-      if (prevButton) prevButton.style.display = "inline-block"
-      if (nextButton) nextButton.style.display = "inline-block"
-    }
-  } else {
-    // Load the post based on URL hash for blog posts
-    const initialIndex = getCurrentPostFromURL()
-    if (postData.length > 0) {
-      showPost(initialIndex, false) // Don't update URL on initial load
-    }
+  // Load the post based on URL hash, or first post by default
+  const initialIndex = getCurrentPostFromURL()
+  if (postData.length > 0) {
+    showPost(initialIndex, false) // Don't update URL on initial load
   }
 })
 
-document.querySelectorAll(".toggle-parent").forEach((item) => {
-  item.addEventListener("click", function () {
-    const subList = this.querySelector(".sub-list")
-    if (subList) {
-      // Check if a sub-list exists
-      subList.classList.toggle("active") // Toggles the 'active' class
-    }
-  })
-})
+ document.querySelectorAll('.toggle-parent').forEach(item => {
+        item.addEventListener('click', function() {
+            const subList = this.querySelector('.sub-list');
+            if (subList) { // Check if a sub-list exists
+                subList.classList.toggle('active'); // Toggles the 'active' class
+            }
+        });
+    });

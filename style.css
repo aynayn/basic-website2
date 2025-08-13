@@ -1,64 +1,50 @@
-@font-face {
-  font-family: "MyanmarSagar";
-  src: local("MyanmarSagar"),
-    url("https://cdn.jsdelivr.net/gh/saturngod/myanmar-unicode-fonts@master/docs/KhmerType/MyanmarSagar.ttf")
-    format("truetype");
-}
+@font-face {font-family:"MyanmarSagar";src:local('MyanmarSagar'),url('https://cdn.jsdelivr.net/gh/saturngod/myanmar-unicode-fonts@master/docs/KhmerType/MyanmarSagar.ttf') format('truetype');}
 
 /*custom css*/
-img {
-  width: 100%;
-}
-.story-entry h2,
-p,
-.post-actions {
-  padding: 0 20px;
-}
-.search-container input {
-  margin-top: 20px;
-}
+img {width: 100%;}
+.story-entry h2, p, .post-actions {padding: 0 20px;}
+.search-container input {margin-top: 20px;}
 
 hr.solid {
-  border-top: 2px solid #ddd;
+  border-top: 2px solid #ddd; 
   /* max-width: 400px; */
   width: 200px;
   margin: 0 0 0 20px;
   display: inline-block;
 }
 .parent-list {
-  list-style: none;
-  /* cursor: pointer; */
-  padding: 0;
+    list-style: none;
+    /* cursor: pointer; */
+    padding: 0;
 }
-.sub-list {
-  display: none; /* Hides the sub-list by default */
-}
+    .sub-list {
+        display: none; /* Hides the sub-list by default */
+    }
 
-.sub-list.active {
-  /* Class added by JavaScript to show */
-  display: block;
-  list-style: none;
-  padding: 0 20px;
-}
-/*custom css*/
+    .sub-list.active { /* Class added by JavaScript to show */
+        display: block;
+        list-style: none;
+        padding: 0 20px;
+    }
+    /*custom css*/
 
-/*NAV BAR*/
-.navbar {
-  font-weight: 600;
-  display: flex;
-  gap: 20px;
-  padding: 0 20px;
-  margin: 10px 0 0 0;
-  list-style: none;
-  justify-content: center;
-}
-/* ul.navbar {
+    /*NAV BAR*/
+    .navbar {
+      font-weight: 600;
+      display: flex;
+      gap: 20px;
+      padding: 0 20px;
+      margin: 10px 0 0 0;
+      list-style: none;
+      justify-content: center;
+    }
+    /* ul.navbar {
       padding: 0;
     } */
-a {
-  text-decoration: none;
-  color: #7d7d7d;
-}
+     a {
+      text-decoration: none;
+      color: #7d7d7d;
+     }
 
 /* Basic styling for a clean, minimal look */
 :root {
@@ -72,16 +58,6 @@ a {
   --sidebar-bg-color-dark: #222;
 }
 
-/* Prevent flash of unstyled content by checking localStorage immediately */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color-light: #121212;
-    --text-color-light: #e0e0e0;
-    --border-color-light: #444;
-    --sidebar-bg-color-light: #222;
-  }
-}
-
 /* Use flexbox on the body to create a sticky footer */
 body {
   font-family: MyanmarSagar;
@@ -91,6 +67,7 @@ body {
   padding: 0;
   background-color: var(--bg-color-light);
   color: var(--text-color-light);
+  transition: background-color 0.3s, color 0.3s;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -295,20 +272,20 @@ body.dark-mode .toggle-button svg {
 .content-container {
   max-width: 700px;
   margin: 20px auto;
-  padding: 0 20px;
+  /*padding: 0 20px;*/
   flex: 1; /* Ensure it takes up space in the main-content flex container */
   padding-bottom: 40px;
 }
 
 /* Post entry styling */
 .story-entry {
-  opacity: 1; /* Fixed opacity to show content properly */
+  opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
 .story-entry.active {
-  opacity: 1; /* Ensure active state is fully visible */
+  opacity: 1;
   transform: translateY(0);
 }
 
@@ -423,15 +400,4 @@ body.dark-mode .navigation button:hover:not(:disabled) {
 body.dark-mode .site-footer {
   color: #a0a0a0;
   border-top: 1px solid var(--border-color-dark);
-}
-
-/* Add smooth transitions only to specific elements, not body */
-.site-header,
-.sidebar,
-.search-container input,
-.sidebar-list li a,
-.share-button,
-.navigation button,
-.site-footer {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
