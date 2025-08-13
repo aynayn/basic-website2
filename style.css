@@ -285,7 +285,7 @@ body.dark-mode .toggle-button svg {
 }
 
 .story-entry.active {
-  opacity: 1;
+  /*opacity: 1;*/
   transform: translateY(0);
 }
 
