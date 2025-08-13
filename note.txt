@@ -1,0 +1,4 @@
+<li><a href="#" data-filename="home.html">HOME</a></li>
+                <li><a href="#" data-filename="whispering-woods.html">BLOG</a></li>
+                <li><a href="#" data-filename="about.html">ABOUT</a></li>
+                <li><a href="#" data-filename="contact.html">CONTACT</a></li>
