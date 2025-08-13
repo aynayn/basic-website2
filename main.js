@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebarCloseButton = document.getElementById("sidebar-close-button")
   const body = document.body
   const sidebarLinks = document.querySelectorAll(".sidebar-list a")
+  const navbarLinks = document.querySelectorAll(".navbar a")
   const prevButton = document.getElementById("prev-button")
   const nextButton = document.getElementById("next-button")
   const searchInput = document.getElementById("sidebar-search")
@@ -229,6 +230,17 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  navbarLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault()
+      const index = postData.findIndex((post) => post.title === link.textContent)
+      if (index !== -1) {
+        showPost(index)
+        body.classList.remove("sidebar-open") // Hide sidebar on navbar click
+      }
+    })
+  })
+
   // Event listeners for pagination buttons (closes sidebar on click)
   if (prevButton) {
     prevButton.addEventListener("click", () => {
@@ -261,11 +273,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })
 
- document.querySelectorAll('.toggle-parent').forEach(item => {
-        item.addEventListener('click', function() {
-            const subList = this.querySelector('.sub-list');
-            if (subList) { // Check if a sub-list exists
-                subList.classList.toggle('active'); // Toggles the 'active' class
-            }
-        });
-    });
+document.querySelectorAll(".toggle-parent").forEach((item) => {
+  item.addEventListener("click", function () {
+    const subList = this.querySelector(".sub-list")
+    if (subList) {
+      // Check if a sub-list exists
+      subList.classList.toggle("active") // Toggles the 'active' class
+    }
+  })
+})
