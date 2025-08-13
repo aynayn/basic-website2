@@ -251,6 +251,8 @@ document.addEventListener("DOMContentLoaded", () => {
           // Show navigation buttons for posts
           if (prevButton) prevButton.style.display = "inline-block"
           if (nextButton) nextButton.style.display = "inline-block"
+
+          updateURL(0)
         }
         body.classList.remove("sidebar-open") // Hide sidebar on navbar click
       }
@@ -284,8 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Check if we're on the main index page (no specific page requested)
   if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
-    // Redirect to home page on initial load
-    window.location.href = "home.html"
+    const initialIndex = getCurrentPostFromURL()
+    if (postData.length > 0) {
+      showPost(initialIndex, false) // Don't update URL on initial load
+      // Show navigation buttons for posts
+      if (prevButton) prevButton.style.display = "inline-block"
+      if (nextButton) nextButton.style.display = "inline-block"
+    }
   } else {
     // Load the post based on URL hash for blog posts
     const initialIndex = getCurrentPostFromURL()
