@@ -175,33 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  async function loadStaticPage(filename) {
-    try {
-      const response = await fetch(`posts/${filename}`)
-      if (!response.ok) {
-        throw new Error(`Page not found: posts/${filename}`)
-      }
-      const content = await response.text()
-
-      const postContainer = document.getElementById("post-container")
-      if (postContainer) {
-        postContainer.innerHTML = `<div class="story-entry active">${content}</div>`
-      }
-
-      // Hide navigation buttons for static pages
-      if (prevButton) prevButton.style.display = "none"
-      if (nextButton) nextButton.style.display = "none"
-
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    } catch (error) {
-      console.error("Error loading static page:", error)
-      const postContainer = document.getElementById("post-container")
-      if (postContainer) {
-        postContainer.innerHTML = `<div class="story-entry"><p>Could not load page content. Error: ${error.message}</p></div>`
-      }
-    }
-  }
-
   const moonIcon =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.25A9.75 9.75 0 0 1 21.75 12c0 .4-.02.8-.07 1.19A8.25 8.25 0 1 1 12 3.76V2.25z"/></svg>'
   const sunIcon =
@@ -252,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const filename = link.getAttribute("data-filename")
 
       if (filename === "home.html" || filename === "about.html" || filename === "contact.html") {
-        loadStaticPage(filename)
+        window.location.href = filename
       } else {
         const index = postData.findIndex((post) => post.filename === filename)
         if (index !== -1) {
@@ -269,69 +242,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event listeners for navbar navigation links (closes sidebar on click)
   navbarLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      e.preventDefault()
-
       const contentType = link.getAttribute("data-content")
 
       if (contentType === "blog") {
+        e.preventDefault()
         if (postData.length > 0) {
           showPost(0) // Load first post
           // Show navigation buttons for posts
           if (prevButton) prevButton.style.display = "inline-block"
           if (nextButton) nextButton.style.display = "inline-block"
         }
-      } else if (contentType === "home" || contentType === "about" || contentType === "contact") {
-        loadNavbarPage(contentType)
+        body.classList.remove("sidebar-open") // Hide sidebar on navbar click
       }
-
-      body.classList.remove("sidebar-open") // Hide sidebar on navbar click
     })
   })
-
-  function loadNavbarPage(pageType) {
-    const postContainer = document.getElementById("post-container")
-    let content = ""
-
-    switch (pageType) {
-      case "home":
-        content = `
-          <div class="story-entry active">
-            <h2>Welcome to My Stories & Poems</h2>
-            <p>Discover a collection of heartfelt stories and beautiful poems that capture the essence of life, love, and imagination.</p>
-            <p>Use the sidebar to browse through different posts, or click on BLOG to start reading from the beginning.</p>
-          </div>
-        `
-        break
-      case "about":
-        content = `
-          <div class="story-entry active">
-            <h2>About</h2>
-            <p>This is a personal collection of stories and poems, crafted with passion and shared with love.</p>
-            <p>Each piece tells a unique story, whether it's a journey through whispering woods or a sonnet dedicated to the stars above.</p>
-          </div>
-        `
-        break
-      case "contact":
-        content = `
-          <div class="story-entry active">
-            <h2>Contact</h2>
-            <p>Thank you for visiting my collection of stories and poems.</p>
-            <p>Feel free to share your thoughts and connect through the stories that resonate with you.</p>
-          </div>
-        `
-        break
-    }
-
-    if (postContainer && content) {
-      postContainer.innerHTML = content
-
-      // Hide navigation buttons for static pages
-      if (prevButton) prevButton.style.display = "none"
-      if (nextButton) nextButton.style.display = "none"
-
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    }
-  }
 
   // Event listeners for pagination buttons (closes sidebar on click)
   if (prevButton) {
@@ -358,10 +282,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setModeIcon()
 
-  // Load the post based on URL hash, or first post by default
-  const initialIndex = getCurrentPostFromURL()
-  if (postData.length > 0) {
-    showPost(initialIndex, false) // Don't update URL on initial load
+  // Check if we're on the main index page (no specific page requested)
+  if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+    // Redirect to home page on initial load
+    window.location.href = "home.html"
+  } else {
+    // Load the post based on URL hash for blog posts
+    const initialIndex = getCurrentPostFromURL()
+    if (postData.length > 0) {
+      showPost(initialIndex, false) // Don't update URL on initial load
+    }
   }
 })
 
