@@ -58,49 +58,6 @@
         <p>&copy; 2025 by [Your Name].</p>
     </footer>
 
-    <script>
-        const modeToggle = document.getElementById('mode-toggle');
-        const body = document.body;
-        
-        modeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            
-            // Update button colors for uniform behavior
-            updateButtonColors(isDarkMode);
-        });
-
-        function updateButtonColors(isDarkMode) {
-            const buttons = document.querySelectorAll('a[style*="background-color"], a[style*="border"]');
-            buttons.forEach(button => {
-                if (isDarkMode) {
-                    if (button.style.backgroundColor) {
-                        button.style.backgroundColor = 'var(--text-color-dark)';
-                        button.style.color = 'var(--bg-color-dark)';
-                    }
-                    if (button.style.borderColor || button.style.border) {
-                        button.style.borderColor = 'var(--text-color-dark)';
-                        button.style.color = 'var(--text-color-dark)';
-                    }
-                } else {
-                    if (button.style.backgroundColor) {
-                        button.style.backgroundColor = 'var(--text-color-light)';
-                        button.style.color = 'var(--bg-color-light)';
-                    }
-                    if (button.style.borderColor || button.style.border) {
-                        button.style.borderColor = 'var(--text-color-light)';
-                        button.style.color = 'var(--text-color-light)';
-                    }
-                }
-            });
-        }
-
-        // Load saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            updateButtonColors(true);
-        }
-    </script>
+   
 </body>
 </html>
