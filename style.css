@@ -278,16 +278,16 @@ body.dark-mode .toggle-button svg {
 }
 
 /* Post entry styling */
-.story-entry {
+/*.story-entry {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-}
+}*/
 
-.story-entry.active {
+/*.story-entry.active {
   opacity: 1;
   transform: translateY(0);
-}
+}*/
 
 .story-entry h2 {
   font-size: 2em;
