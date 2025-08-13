@@ -269,13 +269,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event listeners for navbar navigation links (closes sidebar on click)
   navbarLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      e.preventDefault()
       const filename = link.getAttribute("data-filename")
+      const href = link.getAttribute("href")
 
-      // Handle static pages
-      if (filename === "home.html" || filename === "about.html" || filename === "contact.html") {
-        loadStaticPage(filename)
-      } else if (link.textContent.trim().toUpperCase() === "BLOG") {
+      if (
+        href &&
+        href !== "#" &&
+        (href.includes("home.html") || href.includes("about.html") || href.includes("contact.html"))
+      ) {
+        // Let the browser handle the navigation to separate HTML files
+        return // Don't prevent default, allow normal navigation
+      }
+
+      e.preventDefault()
+
+      if (link.textContent.trim().toUpperCase() === "BLOG") {
         if (postData.length > 0) {
           showPost(0) // Load first post
           // Show navigation buttons for posts
