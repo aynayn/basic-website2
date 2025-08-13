@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Stories & Poems</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="main-content">
+            <header class="site-header">
+                <h1>My Stories & Poems</h1>
+                <button id="mode-toggle" class="toggle-button" aria-label="Toggle dark mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.25A9.75 9.75 0 0 1 21.75 12c0 .4-.02.8-.07 1.19A8.25 8.25 0 1 1 12 3.76V2.25z"/></svg>
+                </button>
+            </header>
+
+            <ul class="navbar">
+                <li><a href="home.html" class="active">HOME</a></li>
+                <li><a href="index.html">BLOG</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+
+            <main class="content-container">
+                <div class="story-entry active"> <!-- Added active class for proper display -->
+                    <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Beautiful landscape" style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;">
+                    
+                    <!-- Updated to be a proper main/start page -->
+                    <center><h1 style="font-size: 3rem; margin: 2rem 0;">Welcome to My Stories & Poems</h1></center>
+                    
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <p style="font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                            Discover a world of imagination through carefully crafted stories and heartfelt poems. 
+                            Each piece is a journey into the depths of human experience, emotion, and wonder.
+                        </p>
+                        
+                        <p style="font-size: 1.1rem; color: #888; margin-bottom: 2rem;">
+                            Navigate through the collection using the menu above, or dive straight into the blog to explore all stories and poems.
+                        </p>
+                        
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                            <a href="index.html" style="background-color: var(--text-color-light); color: var(--bg-color-light); padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                                Start Reading
+                            </a>
+                            <a href="about.html" style="border: 2px solid var(--text-color-light); color: var(--text-color-light); padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 by [Your Name].</p>
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+        
+        modeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Update button colors for uniform behavior
+            updateButtonColors(isDarkMode);
+        });
+
+        function updateButtonColors(isDarkMode) {
+            const buttons = document.querySelectorAll('a[style*="background-color"], a[style*="border"]');
+            buttons.forEach(button => {
+                if (isDarkMode) {
+                    if (button.style.backgroundColor) {
+                        button.style.backgroundColor = 'var(--text-color-dark)';
+                        button.style.color = 'var(--bg-color-dark)';
+                    }
+                    if (button.style.borderColor || button.style.border) {
+                        button.style.borderColor = 'var(--text-color-dark)';
+                        button.style.color = 'var(--text-color-dark)';
+                    }
+                } else {
+                    if (button.style.backgroundColor) {
+                        button.style.backgroundColor = 'var(--text-color-light)';
+                        button.style.color = 'var(--bg-color-light)';
+                    }
+                    if (button.style.borderColor || button.style.border) {
+                        button.style.borderColor = 'var(--text-color-light)';
+                        button.style.color = 'var(--text-color-light)';
+                    }
+                }
+            });
+        }
+
+        // Load saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            updateButtonColors(true);
+        }
+    </script>
+</body>
+</html>
