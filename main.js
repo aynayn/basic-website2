@@ -266,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // Event listeners for navbar navigation links (closes sidebar on click)
   navbarLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault()
@@ -274,11 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Handle static pages
       if (filename === "home.html" || filename === "about.html" || filename === "contact.html") {
         loadStaticPage(filename)
-      } else if (filename === "whispering-woods.html") {
-        // BLOG link loads the first post
-        const index = postData.findIndex((post) => post.filename === filename)
-        if (index !== -1) {
-          showPost(index)
+      } else if (link.textContent.trim().toUpperCase() === "BLOG") {
+        if (postData.length > 0) {
+          showPost(0) // Load first post
           // Show navigation buttons for posts
           if (prevButton) prevButton.style.display = "inline-block"
           if (nextButton) nextButton.style.display = "inline-block"
