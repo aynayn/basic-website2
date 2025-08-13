@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - My Stories & Poems</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <CHANGE> Add script to prevent dark mode flash -->
+    <script>
+        // Apply dark mode immediately before page renders to prevent flash
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
 </head>
 <body>
     <div class="page-container">
@@ -45,15 +52,15 @@
     </footer>
 
     <script>
+        // <CHANGE> Apply dark mode from localStorage immediately on page load
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
         document.getElementById('mode-toggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         });
-
-        // Load saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
     </script>
 </body>
 </html>

@@ -5,11 +5,6 @@
     format("truetype");
 }
 
-/* Added universal smooth transitions for dark mode */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease, opacity 0.3s ease;
-}
-
 /*custom css*/
 img {
   width: 100%;
@@ -75,6 +70,16 @@ a {
   --border-color-dark: #444;
   --sidebar-bg-color-light: #f1f1f1;
   --sidebar-bg-color-dark: #222;
+}
+
+/* Prevent flash of unstyled content by checking localStorage immediately */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color-light: #121212;
+    --text-color-light: #e0e0e0;
+    --border-color-light: #444;
+    --sidebar-bg-color-light: #222;
+  }
 }
 
 /* Use flexbox on the body to create a sticky footer */
@@ -145,6 +150,7 @@ body.sidebar-open .sidebar {
   border-radius: 5px;
   background-color: transparent;
   color: var(--text-color-light);
+  transition: border-color 0.3s;
 }
 
 body.dark-mode .search-container input {
@@ -184,6 +190,7 @@ body.dark-mode .search-container svg {
   text-decoration: none;
   color: var(--text-color-light);
   border-bottom: 1px solid var(--border-color-light);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .sidebar-list li:last-child a {
@@ -220,6 +227,7 @@ body.dark-mode .sidebar-list li a:hover {
   top: 0;
   background-color: var(--bg-color-light);
   z-index: 50;
+  transition: background-color 0.3s, border-color 0.3s;
   position: relative; /* Needed for absolute positioning of children */
 }
 
@@ -249,6 +257,7 @@ body.dark-mode .site-header {
   width: 24px;
   height: 24px;
   fill: var(--text-color-light);
+  transition: fill 0.3s;
 }
 
 body.dark-mode .toggle-button svg {
@@ -308,6 +317,7 @@ body.dark-mode .toggle-button svg {
   /* border-bottom: 2px solid var(--border-color-light); */
   padding-bottom: 10px;
   margin-bottom: 10px;
+  transition: border-color 0.3s;
 }
 
 body.dark-mode .story-entry h2 {
@@ -318,6 +328,7 @@ body.dark-mode .story-entry h2 {
   font-style: italic;
   color: #888;
   margin: 10px 0;
+  transition: color 0.3s;
 }
 
 body.dark-mode .story-entry .story-date {
@@ -342,6 +353,7 @@ body.dark-mode .story-entry .story-date {
   display: flex;
   align-items: center;
   gap: 5px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .share-button:hover {
@@ -376,6 +388,7 @@ body.dark-mode .share-button:hover {
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .navigation button:hover:not(:disabled) {
@@ -404,9 +417,21 @@ body.dark-mode .navigation button:hover:not(:disabled) {
   font-size: 0.9em;
   color: #888;
   border-top: 1px solid var(--border-color-light);
+  transition: border-color 0.3s, color 0.3s;
 }
 
 body.dark-mode .site-footer {
   color: #a0a0a0;
   border-top: 1px solid var(--border-color-dark);
+}
+
+/* Add smooth transitions only to specific elements, not body */
+.site-header,
+.sidebar,
+.search-container input,
+.sidebar-list li a,
+.share-button,
+.navigation button,
+.site-footer {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
