@@ -188,6 +188,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function loadDarkModePreference() {
+    if (localStorage.getItem("darkMode") === "true") {
+      body.classList.add("dark-mode")
+    }
+    setModeIcon()
+  }
+
   // Event listener for opening the sidebar
   if (menuToggle) {
     menuToggle.addEventListener("click", () => body.classList.add("sidebar-open"))
@@ -202,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (modeToggle) {
     modeToggle.addEventListener("click", () => {
       body.classList.toggle("dark-mode")
+      localStorage.setItem("darkMode", body.classList.contains("dark-mode"))
       setModeIcon()
     })
   }
@@ -282,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  setModeIcon()
+  loadDarkModePreference()
 
   // Check if we're on the main index page (no specific page requested)
   if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
