@@ -1,50 +1,64 @@
-@font-face {font-family:"MyanmarSagar";src:local('MyanmarSagar'),url('https://cdn.jsdelivr.net/gh/saturngod/myanmar-unicode-fonts@master/docs/KhmerType/MyanmarSagar.ttf') format('truetype');}
+@font-face {
+  font-family: "MyanmarSagar";
+  src: local("MyanmarSagar"),
+    url("https://cdn.jsdelivr.net/gh/saturngod/myanmar-unicode-fonts@master/docs/KhmerType/MyanmarSagar.ttf")
+    format("truetype");
+}
 
 /*custom css*/
-img {width: 100%;}
-.story-entry h2, p, .post-actions {padding: 0 20px;}
-.search-container input {margin-top: 20px;}
+img {
+  width: 100%;
+}
+.story-entry h2,
+p,
+.post-actions {
+  padding: 0 20px;
+}
+.search-container input {
+  margin-top: 20px;
+}
 
 hr.solid {
-  border-top: 2px solid #ddd; 
+  border-top: 2px solid #ddd;
   /* max-width: 400px; */
   width: 200px;
   margin: 0 0 0 20px;
   display: inline-block;
 }
 .parent-list {
-    list-style: none;
-    /* cursor: pointer; */
-    padding: 0;
+  list-style: none;
+  /* cursor: pointer; */
+  padding: 0;
 }
-    .sub-list {
-        display: none; /* Hides the sub-list by default */
-    }
+.sub-list {
+  display: none; /* Hides the sub-list by default */
+}
 
-    .sub-list.active { /* Class added by JavaScript to show */
-        display: block;
-        list-style: none;
-        padding: 0 20px;
-    }
-    /*custom css*/
+.sub-list.active {
+  /* Class added by JavaScript to show */
+  display: block;
+  list-style: none;
+  padding: 0 20px;
+}
+/*custom css*/
 
-    /*NAV BAR*/
-    .navbar {
-      font-weight: 600;
-      display: flex;
-      gap: 20px;
-      padding: 0 20px;
-      margin: 10px 0 0 0;
-      list-style: none;
-      justify-content: center;
-    }
-    /* ul.navbar {
+/*NAV BAR*/
+.navbar {
+  font-weight: 600;
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+  margin: 10px 0 0 0;
+  list-style: none;
+  justify-content: center;
+}
+/* ul.navbar {
       padding: 0;
     } */
-     a {
-      text-decoration: none;
-      color: #7d7d7d;
-     }
+a {
+  text-decoration: none;
+  color: #7d7d7d;
+}
 
 /* Basic styling for a clean, minimal look */
 :root {
@@ -268,7 +282,7 @@ body.dark-mode .toggle-button svg {
   }
 }
 
- /* Main content container */
+/* Main content container */
 .content-container {
   max-width: 700px;
   margin: 20px auto;
@@ -279,13 +293,13 @@ body.dark-mode .toggle-button svg {
 
 /* Post entry styling */
 .story-entry {
-  /*opacity: 0;*/
+  opacity: 1; /* Fixed opacity to show content properly */
   transform: translateY(20px);
   transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
 .story-entry.active {
-  /*opacity: 1;*/
+  opacity: 1; /* Ensure active state is fully visible */
   transform: translateY(0);
 }
 
