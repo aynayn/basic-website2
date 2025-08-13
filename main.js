@@ -175,6 +175,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  async function loadStaticPage(filename) {
+    try {
+      const response = await fetch(`posts/${filename}`)
+      if (!response.ok) {
+        throw new Error(`Page not found: posts/${filename}`)
+      }
+      const content = await response.text()
+
+      const postContainer = document.getElementById("post-container")
+      if (postContainer) {
+        postContainer.innerHTML = `<div class="story-entry active">${content}</div>`
+      }
+
+      // Hide navigation buttons for static pages
+      if (prevButton) prevButton.style.display = "none"
+      if (nextButton) nextButton.style.display = "none"
+
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } catch (error) {
+      console.error("Error loading static page:", error)
+      const postContainer = document.getElementById("post-container")
+      if (postContainer) {
+        postContainer.innerHTML = `<div class="story-entry"><p>Could not load page content. Error: ${error.message}</p></div>`
+      }
+    }
+  }
+
   const moonIcon =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.25A9.75 9.75 0 0 1 21.75 12c0 .4-.02.8-.07 1.19A8.25 8.25 0 1 1 12 3.76V2.25z"/></svg>'
   const sunIcon =
@@ -222,22 +249,42 @@ document.addEventListener("DOMContentLoaded", () => {
   sidebarLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault()
-      const index = postData.findIndex((post) => post.title === link.textContent)
-      if (index !== -1) {
-        showPost(index)
-        body.classList.remove("sidebar-open") // Hide sidebar immediately on menu click
+      const filename = link.getAttribute("data-filename")
+
+      if (filename === "home.html" || filename === "about.html" || filename === "contact.html") {
+        loadStaticPage(filename)
+      } else {
+        const index = postData.findIndex((post) => post.filename === filename)
+        if (index !== -1) {
+          showPost(index)
+          // Show navigation buttons for posts
+          if (prevButton) prevButton.style.display = "inline-block"
+          if (nextButton) nextButton.style.display = "inline-block"
+        }
       }
+      body.classList.remove("sidebar-open") // Hide sidebar immediately on menu click
     })
   })
 
   navbarLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault()
-      const index = postData.findIndex((post) => post.title === link.textContent)
-      if (index !== -1) {
-        showPost(index)
-        body.classList.remove("sidebar-open") // Hide sidebar on navbar click
+      const filename = link.getAttribute("data-filename")
+
+      // Handle static pages
+      if (filename === "home.html" || filename === "about.html" || filename === "contact.html") {
+        loadStaticPage(filename)
+      } else if (filename === "whispering-woods.html") {
+        // BLOG link loads the first post
+        const index = postData.findIndex((post) => post.filename === filename)
+        if (index !== -1) {
+          showPost(index)
+          // Show navigation buttons for posts
+          if (prevButton) prevButton.style.display = "inline-block"
+          if (nextButton) nextButton.style.display = "inline-block"
+        }
       }
+      body.classList.remove("sidebar-open") // Hide sidebar on navbar click
     })
   })
 
