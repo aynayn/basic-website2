@@ -268,14 +268,7 @@ body.dark-mode .toggle-button svg {
   }
 }
 
-/* Main content container */
-.content-container {
-  max-width: 700px;
-  margin: 20px auto;
-  /*padding: 0 20px;*/
-  flex: 1; /* Ensure it takes up space in the main-content flex container */
-  padding-bottom: 40px;
-}
+
 
 /* Post entry styling */
 .story-entry {
